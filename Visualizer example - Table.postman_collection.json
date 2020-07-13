@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "b93aee31-d656-48a5-bc50-678c24749917",
+		"name": "Visualizer example - Table",
+		"description": "This collection shows how you can render your API data as a HTML table.\n\nLook under the \"Tests\" tab of the request in this collection to get a sense of things.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Table view",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a59fd1fa-1a2f-43f2-b14b-a6f156c5ee02",
+						"exec": [
+							"var template = `",
+							"    <style type=\"text/css\">",
+							"        .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"        .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"        .tftable tr {background-color:#ffffff;}",
+							"        .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"        .tftable tr:hover {background-color:#e0ffff;}",
+							"    </style>",
+							"    ",
+							"    <table class=\"tftable\" border=\"1\">",
+							"        <tr>",
+							"            <th>Name</th>",
+							"            <th>Email</th>",
+							"        </tr>",
+							"        ",
+							"        {{#each response.data.contacts}}",
+							"            <tr id=row_{{@key}} onClick=\"handleClick(this.id)\">",
+							"                <td id={{@key}}>{{name}}</td>",
+							"                <td>{{email}}</td>",
+							"            </tr>",
+							"        {{/each}}",
+							"    </table>",
+							"`;",
+							"",
+							"pm.visualizer.set(template, {",
+							"    response: pm.response.json()",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contacts\": [\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t}\n\t\t]\n}\n\t\t"
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				},
+				"description": "Gets randomly generated names and e-mails from postman-echo and visualizes the response body as a table."
+			},
+			"response": []
+		},
+		{
+			"name": "Postman-echo.com/get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "Postman-echo.com/headers",
+					"host": [
+						"Postman-echo",
+						"com"
+					],
+					"path": [
+						"headers"
+					]
+				},
+				"description": "first postman get"
+			},
+			"response": [
+				{
+					"name": "Postman-echo.com/get",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {},
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "Postman-echo.com/get",
+							"host": [
+								"Postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 29 Jun 2020 11:28:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "369"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"171-I2Cu9o0DMVNBu7flk2VGpudBE/4\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "set-cookie",
+							"value": "sails.sid=s%3Ax8RAQ10K1PVK3ZJnc1jE5rHMNOEB_Dw4.%2BBEVVWqm%2FgLt6ZJxqnn48pyXlp6mMa2gTWxIMBkoPqo; Path=/; HttpOnly"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"args\": {},\n    \"headers\": {\n        \"x-forwarded-proto\": \"http\",\n        \"x-forwarded-port\": \"80\",\n        \"host\": \"postman-echo.com\",\n        \"x-amzn-trace-id\": \"Root=1-5ef9d069-0cfe1220d6442ce82f92c0a0\",\n        \"user-agent\": \"PostmanRuntime/7.26.1\",\n        \"accept\": \"*/*\",\n        \"cache-control\": \"no-cache\",\n        \"postman-token\": \"fad913e4-a61a-48d1-9ecc-b1716d4d459d\",\n        \"accept-encoding\": \"gzip, deflate, br\"\n    },\n    \"url\": \"http://postman-echo.com/get\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f645a01d-7a94-424c-b415-cc0c7e7b421e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "42cf3a99-8dc8-4802-8324-2f1166205e70",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": []
+}
